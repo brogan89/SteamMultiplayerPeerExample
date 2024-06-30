@@ -194,12 +194,16 @@ func begin_game():
 #region Steam Peer Management
 func create_steam_socket():
 	peer = SteamMultiplayerPeer.new()
-	peer.create_host(0, [])
+	var err = peer.create_host(6969, [])
+	if err != OK:
+		print("create host failed: %s" % err)
 	multiplayer.set_multiplayer_peer(peer)
 
 func connect_steam_socket(steam_id : int):
 	peer = SteamMultiplayerPeer.new()
-	peer.create_client(steam_id, 0, [])
+	var err = peer.create_client(steam_id, 0, [])
+	if err != OK:
+		print("create host failed: %s" % err)
 	multiplayer.set_multiplayer_peer(peer)
 
 #endregion
